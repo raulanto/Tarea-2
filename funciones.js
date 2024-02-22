@@ -24,7 +24,7 @@ function mostrarFormulario(){
 // fun para cargar menus
 function callMenu(menu_a_abrir){
 		$.ajax({
-			url: menu_a_abrir,
+			url:'menu/'+ menu_a_abrir,
 			cache: false,
 			type: "GET",
 			success: function(datos){
