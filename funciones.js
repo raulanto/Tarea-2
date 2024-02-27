@@ -24,7 +24,7 @@ function mostrarFormulario(){
 // fun para cargar menus
 function callMenu(menu_a_abrir){
 		$.ajax({
-			url: menu_a_abrir,
+			url:'menu/'+ menu_a_abrir,
 			cache: false,
 			type: "GET",
 			success: function(datos){
@@ -32,7 +32,11 @@ function callMenu(menu_a_abrir){
 			}
 		});
 	}
-
+	document.addEventListener("DOMContentLoaded", function() {
+		// Llama a la función callMenu() con el menú que deseas abrir automáticamente.
+		callMenu("URL_del_menu_que_deseas_abrir");
+	});
+	
 function cerrarSesion(){
 if(confirm('¿Seguro de salir del Sistema SPI?')){
 	
