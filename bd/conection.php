@@ -21,11 +21,14 @@ class ConexionBD {
         $this->conexion->set_charset("utf8");
     }
 
+    // crear una consulta
     public function ejecutar($sql) {
         $stmt = $this->conexion->query($sql);
         return $stmt;
     }
 
+
+    // obtener la fila de la consulta
     public function obtener_fila($stmt, $fila) {
         if ($fila == 0) {
             $array = $stmt->fetch_array();

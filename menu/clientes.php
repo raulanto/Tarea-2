@@ -7,7 +7,7 @@ $nombre_archivo = basename(__FILE__);
 
 <?php
 require_once('../bd/conection.php');
-$conexion = new ConexionBD('localhost', 'root', '', 'proyecto');
+$conexion = new ConexionBD('20.115.87.186', 'web', 'Admin0123', 'proyecto');
 $conexion->conectar();
 
 
@@ -18,7 +18,7 @@ $resultados = $conexion->ejecutar($sql);
 ?>
 
 <header class="mx-7">
-    <h1 class="mb-4 text-4xl text-center font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">Clientes</h1>
+    <h1 class="mb-4 text-4xl text-center font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">rtyrtyrtyrtyrtyr</h1>
 </header>
 <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
     <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">

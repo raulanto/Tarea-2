@@ -1,314 +1,380 @@
-function abrirMensaje(){
-	$.ajax({
-		url: 'mensaje.php',
-		cache: false,
-		type: "GET",
-		success: function(datos){
-			$("#content").html(datos);
-			alert("Resultado obtenido" + datos);
-		}
-	});
-}
 
-function mostrarFormulario(){
-		$.ajax({
-			url: 'formulario.html',
-			cache: false,
-			type: "GET",
-			success: function(datos){
-				$("#side-left").html(datos);
-			}
-		});
-	}
+
+// function abrirMensaje() {
+// 	$.ajax({
+// 		url: "mensaje.php",
+// 		cache: false,
+// 		type: "GET",
+// 		success: function (datos) {
+// 			$("#content").html(datos);
+// 			alert("Resultado obtenido" + datos);
+// 		},
+// 	});
+// }
+
+// function mostrarFormulario() {
+// 	$.ajax({
+// 		url: "formulario.html",
+// 		cache: false,
+// 		type: "GET",
+// 		success: function (datos) {
+// 			$("#side-left").html(datos);
+// 		},
+// 	});
+// }
 
 // fun para cargar menus
-function callMenu(menu_a_abrir){
-		$.ajax({
-			url:'menu/'+ menu_a_abrir,
-			cache: false,
-			type: "GET",
-			success: function(datos){
-				$("#wrapper").html(datos);
-			}
-		});
-	}
-	document.addEventListener("DOMContentLoaded", function() {
-		// Llama a la función callMenu() con el menú que deseas abrir automáticamente.
-		callMenu("URL_del_menu_que_deseas_abrir");
-	});
-	
-function cerrarSesion(){
-if(confirm('¿Seguro de salir del Sistema SPI?')){
-	
+function callMenu(menu_a_abrir) {
 	$.ajax({
-			url: '../CerrarSesion',
-			cache: false,
-			type: "POST",
-			success: function(datos){
-				
-				if(datos==1){
-					window.close();
-				}
-			}
-		});
-}else{
-					alert("Cerrar Sesión Cancelada ");
-				}
-		
-	
-	
-}
-
-function abrirClientes(){
-	$.ajax({
-		url: 'formClientes.php',
+		url: "menu/" + menu_a_abrir,
 		cache: false,
 		type: "GET",
-		success: function(datos){
-			$("#titulo").html("CLIENTES");
-			$("#cuerpo").html(datos);
-		}
+		success: function (datos) {
+			$("#wrapper").html(datos);
+		},
 	});
 }
+// document.addEventListener("DOMContentLoaded", function() {
+// 	// Llama a la función callMenu() con el menú que deseas abrir automáticamente.
+// 	callMenu("URL_del_menu_que_deseas_abrir");
+// });
 
-function callFormulario(formulario_a_abrir){
-		$.ajax({
-			url: '../jsp/'+formulario_a_abrir,
-			cache: false,
-			type: "GET",
-			success: function(datos){
-				$("#informacion").html(datos);
-			}
-		});
-	}
+// function cerrarSesion() {
+// 	if (confirm("¿Seguro de salir del Sistema SPI?")) {
+// 		$.ajax({
+// 			url: "../CerrarSesion",
+// 			cache: false,
+// 			type: "POST",
+// 			success: function (datos) {
+// 				if (datos == 1) {
+// 					window.close();
+// 				}
+// 			},
+// 		});
+// 	} else {
+// 		alert("Cerrar Sesión Cancelada ");
+// 	}
+// }
 
-function enviarDatos(){
-		var numero = $('#tabla').attr('value');
-		if(!numero){
-			alert("un numero es obligatorio");
-		}else{
-			$.ajax({
-				url: 'tabla.php',
-				cache: false,
-				type: "POST",
-				data: "numero="+numero,
-				success: function(datos){
-					$("#content").html(datos);
-				}
-			});
+// function abrirClientes() {
+// 	$.ajax({
+// 		url: "formClientes.php",
+// 		cache: false,
+// 		type: "GET",
+// 		success: function (datos) {
+// 			$("#titulo").html("CLIENTES");
+// 			$("#cuerpo").html(datos);
+// 		},
+// 	});
+// }
 
-		}
-	}
+// function callFormulario(formulario_a_abrir) {
+// 	$.ajax({
+// 		url: "../jsp/" + formulario_a_abrir,
+// 		cache: false,
+// 		type: "GET",
+// 		success: function (datos) {
+// 			$("#informacion").html(datos);
+// 		},
+// 	});
+// }
 
-	function sumarNumeros(){
-		var num1 = $('#num1').attr('value');
-		var num2 = $('#num2').attr('value');
-		var suma = parseInt(num1) + parseInt(num2);
-		//alert("La sumatoria es " + suma);
-		//document.getElementById("resultado").setAttribute('value', suma);
-		$("#resultado").val(suma);
-	}
+// function enviarDatos() {
+// 	var numero = $("#tabla").attr("value");
+// 	if (!numero) {
+// 		alert("un numero es obligatorio");
+// 	} else {
+// 		$.ajax({
+// 			url: "tabla.php",
+// 			cache: false,
+// 			type: "POST",
+// 			data: "numero=" + numero,
+// 			success: function (datos) {
+// 				$("#content").html(datos);
+// 			},
+// 		});
+// 	}
+// }
 
-function eliminaLegal(id){
-		var operacion = "eliminar"; 		
-		$.ajax({
-			url: '../LegalControlador',
-			cache: false,
-			type: "POST",
-			data: "operacion="+operacion+"&id="+id,
-			success: function(datos){
-				$("#informacion").html(datos);
-			}
-		});
-	}
+// function sumarNumeros() {
+// 	var num1 = $("#num1").attr("value");
+// 	var num2 = $("#num2").attr("value");
+// 	var suma = parseInt(num1) + parseInt(num2);
+// 	//alert("La sumatoria es " + suma);
+// 	//document.getElementById("resultado").setAttribute('value', suma);
+// 	$("#resultado").val(suma);
+// }
 
-function grabarCliente(){
-		var nombre = $('#nombre').attr('value');
-		var direccion = $('#direccion').attr('value'); 
-		var telefono = $('#telefono').attr('value'); 
-		$.ajax({
-			url: 'grabarCliente.php',
-			cache: false,
-			type: "POST",
-			data: "nombre="+nombre+"&direccion="+direccion+"&telefono="+telefono,
-			success: function(datos){
-				$("#cuerpo").html(datos);
-			}
-		});
-	}
+// function eliminaLegal(id) {
+// 	var operacion = "eliminar";
+// 	$.ajax({
+// 		url: "../LegalControlador",
+// 		cache: false,
+// 		type: "POST",
+// 		data: "operacion=" + operacion + "&id=" + id,
+// 		success: function (datos) {
+// 			$("#informacion").html(datos);
+// 		},
+// 	});
+// }
 
-function CallGuardaAlmacen(){
-		var IDALMACEN = $('#IDALMACEN').attr('value');
-		var NOMBRE = $('#NOMBRE').attr('value'); 
-		var operacion = "insertar"; 		
-		$.ajax({
-			url: '../AlmacenControlador',
-			cache: false,
-			type: "POST",
-			data: "operacion="+operacion+"&IDALMACEN="+IDALMACEN+"&NOMBRE="+NOMBRE,
-			success: function(datos){
-				$("#informacion").html(datos);
-			}
-		});
-	}
+// function grabarCliente() {
+// 	var nombre = $("#nombre").attr("value");
+// 	var direccion = $("#direccion").attr("value");
+// 	var telefono = $("#telefono").attr("value");
+// 	$.ajax({
+// 		url: "grabarCliente.php",
+// 		cache: false,
+// 		type: "POST",
+// 		data:
+// 			"nombre=" + nombre + "&direccion=" + direccion + "&telefono=" + telefono,
+// 		success: function (datos) {
+// 			$("#cuerpo").html(datos);
+// 		},
+// 	});
+// }
 
-function CallGuardaProveedor(){
-		var IDPROVEEDOR = $('#IDPROVEEDOR').attr('value');
-		var nombre = $('#nombre').attr('value'); 
-		var direccion = $('#direccion').attr('value'); 
-		var telefono = $('#telefono').attr('value'); 
-		var observacion = $('#observacion').attr('value'); 
-		var operacion = "insertar"; 		
-		$.ajax({
-			url: '../ProveedorControlador',
-			cache: false,
-			type: "POST",
-			data: "operacion="+operacion+"&IDPROVEEDOR="+IDPROVEEDOR+"&nombre="+nombre+"&direccion="+direccion+"&telefono="+telefono+"&observacion="+observacion,
-			success: function(datos){
-				$("#informacion").html(datos);
-			}
-		});
-	}
+// function CallGuardaAlmacen() {
+// 	var IDALMACEN = $("#IDALMACEN").attr("value");
+// 	var NOMBRE = $("#NOMBRE").attr("value");
+// 	var operacion = "insertar";
+// 	$.ajax({
+// 		url: "../AlmacenControlador",
+// 		cache: false,
+// 		type: "POST",
+// 		data:
+// 			"operacion=" +
+// 			operacion +
+// 			"&IDALMACEN=" +
+// 			IDALMACEN +
+// 			"&NOMBRE=" +
+// 			NOMBRE,
+// 		success: function (datos) {
+// 			$("#informacion").html(datos);
+// 		},
+// 	});
+// }
 
-function CallGuardaConsumible(){
-		var IDCONSUMIBLE = $('#IDCONSUMIBLE').attr('value');
-		var nombre = $('#nombre').attr('value'); 
-		var almacen = $('#almacen').attr('value'); 
-		var operacion = "insertar"; 		
-		$.ajax({
-			url: '../ConsumibleControlador',
-			cache: false,
-			type: "POST",
-			data: "operacion="+operacion+"&IDCONSUMIBLE="+IDCONSUMIBLE+"&nombre="+nombre+"&almacen="+almacen,
-			success: function(datos){
-				$("#informacion").html(datos);
-			}
-		});
-	}
+// function CallGuardaProveedor() {
+// 	var IDPROVEEDOR = $("#IDPROVEEDOR").attr("value");
+// 	var nombre = $("#nombre").attr("value");
+// 	var direccion = $("#direccion").attr("value");
+// 	var telefono = $("#telefono").attr("value");
+// 	var observacion = $("#observacion").attr("value");
+// 	var operacion = "insertar";
+// 	$.ajax({
+// 		url: "../ProveedorControlador",
+// 		cache: false,
+// 		type: "POST",
+// 		data:
+// 			"operacion=" +
+// 			operacion +
+// 			"&IDPROVEEDOR=" +
+// 			IDPROVEEDOR +
+// 			"&nombre=" +
+// 			nombre +
+// 			"&direccion=" +
+// 			direccion +
+// 			"&telefono=" +
+// 			telefono +
+// 			"&observacion=" +
+// 			observacion,
+// 		success: function (datos) {
+// 			$("#informacion").html(datos);
+// 		},
+// 	});
+// }
 
-	
-function CallGuardaEquipo(){
-		var IDEQUIPO= $('#IDEQUIPO').attr('value');
-		var nombre = $('#nombre').attr('value'); 
-		var proveedor = $('#proveedor').attr('value'); 
-		var almacen = $('#almacen').attr('value'); 
-		var status = $('#status').attr('value'); 
-		var operacion = "insertar"; 		
-		$.ajax({
-			url: '../EquipoControlador',
-			cache: false,
-			type: "POST",
-			data: "operacion="+operacion+"&IDEQUIPO="+IDEQUIPO+"&nombre="+nombre+"&proveedor="+proveedor+"&almacen="+almacen+"&status="+status,
-			success: function(datos){
-				$("#informacion").html(datos);
-			}
-		});
-	}
+// function CallGuardaConsumible() {
+// 	var IDCONSUMIBLE = $("#IDCONSUMIBLE").attr("value");
+// 	var nombre = $("#nombre").attr("value");
+// 	var almacen = $("#almacen").attr("value");
+// 	var operacion = "insertar";
+// 	$.ajax({
+// 		url: "../ConsumibleControlador",
+// 		cache: false,
+// 		type: "POST",
+// 		data:
+// 			"operacion=" +
+// 			operacion +
+// 			"&IDCONSUMIBLE=" +
+// 			IDCONSUMIBLE +
+// 			"&nombre=" +
+// 			nombre +
+// 			"&almacen=" +
+// 			almacen,
+// 		success: function (datos) {
+// 			$("#informacion").html(datos);
+// 		},
+// 	});
+// }
 
-function CallGuardaProducto(){
-		var codigo = $('#codigo').attr('value');
-		var nombre = $('#nombre').attr('value'); 
-		var marca = $('#marca').attr('value'); 
-		var almacen = $('#almacen').attr('value'); 
-		var descripcion = $('#descripcion').attr('value');
-		var cantidad = $('#cantidad').attr('value'); 
-		var precio = $('#precio').attr('value'); 
-		var fecha = $('#fecha').attr('value'); 
-		var operacion = "insertar"; 		
-		$.ajax({
-			url: '../ProductoControlador',
-			cache: false,
-			type: "POST",
-			data: "operacion="+operacion+"&codigo="+codigo+"&nombre="+nombre+"&marca="+marca+"&almacen="+almacen+"&descripcion="+descripcion+"&cantidad="+cantidad+"&precio="+precio+"&fecha="+fecha,
-			success: function(datos){
-				$("#informacion").html(datos);
-			}
-		});
-	}
-	
-	
-function CallGuardaUsuario(){
-		var idusuario = $('#idusuario').attr('value');
-		var cuenta = $('#cuenta').attr('value'); 
-		var clave = $('#clave').attr('value'); 
-		var perfil = $('#perfil').attr('value'); 
-		var operacion = "insertar"; 		
-		$.ajax({
-			url: '../UsuariosControlador',
-			cache: false,
-			type: "POST",
-			data: "operacion="+operacion+"&idusuario="+idusuario+"&cuenta="+cuenta+"&clave="+clave+"&perfil="+perfil,
-			success: function(datos){
-				$("#informacion").html(datos);
-			}
-		});
-	}
+// function CallGuardaEquipo() {
+// 	var IDEQUIPO = $("#IDEQUIPO").attr("value");
+// 	var nombre = $("#nombre").attr("value");
+// 	var proveedor = $("#proveedor").attr("value");
+// 	var almacen = $("#almacen").attr("value");
+// 	var status = $("#status").attr("value");
+// 	var operacion = "insertar";
+// 	$.ajax({
+// 		url: "../EquipoControlador",
+// 		cache: false,
+// 		type: "POST",
+// 		data:
+// 			"operacion=" +
+// 			operacion +
+// 			"&IDEQUIPO=" +
+// 			IDEQUIPO +
+// 			"&nombre=" +
+// 			nombre +
+// 			"&proveedor=" +
+// 			proveedor +
+// 			"&almacen=" +
+// 			almacen +
+// 			"&status=" +
+// 			status,
+// 		success: function (datos) {
+// 			$("#informacion").html(datos);
+// 		},
+// 	});
+// }
 
+// function CallGuardaProducto() {
+// 	var codigo = $("#codigo").attr("value");
+// 	var nombre = $("#nombre").attr("value");
+// 	var marca = $("#marca").attr("value");
+// 	var almacen = $("#almacen").attr("value");
+// 	var descripcion = $("#descripcion").attr("value");
+// 	var cantidad = $("#cantidad").attr("value");
+// 	var precio = $("#precio").attr("value");
+// 	var fecha = $("#fecha").attr("value");
+// 	var operacion = "insertar";
+// 	$.ajax({
+// 		url: "../ProductoControlador",
+// 		cache: false,
+// 		type: "POST",
+// 		data:
+// 			"operacion=" +
+// 			operacion +
+// 			"&codigo=" +
+// 			codigo +
+// 			"&nombre=" +
+// 			nombre +
+// 			"&marca=" +
+// 			marca +
+// 			"&almacen=" +
+// 			almacen +
+// 			"&descripcion=" +
+// 			descripcion +
+// 			"&cantidad=" +
+// 			cantidad +
+// 			"&precio=" +
+// 			precio +
+// 			"&fecha=" +
+// 			fecha,
+// 		success: function (datos) {
+// 			$("#informacion").html(datos);
+// 		},
+// 	});
+// }
 
-function callMenuIn(){
-	$.ajax({
-		url: 'INCLUDE/menus/Minfraestructura.html',
-		cache: false,
-		type: "GET",
-		success: function(datos){
-			$("#izquierda").html(datos);
-		}
-	});
-}
+// function CallGuardaUsuario() {
+// 	var idusuario = $("#idusuario").attr("value");
+// 	var cuenta = $("#cuenta").attr("value");
+// 	var clave = $("#clave").attr("value");
+// 	var perfil = $("#perfil").attr("value");
+// 	var operacion = "insertar";
+// 	$.ajax({
+// 		url: "../UsuariosControlador",
+// 		cache: false,
+// 		type: "POST",
+// 		data:
+// 			"operacion=" +
+// 			operacion +
+// 			"&idusuario=" +
+// 			idusuario +
+// 			"&cuenta=" +
+// 			cuenta +
+// 			"&clave=" +
+// 			clave +
+// 			"&perfil=" +
+// 			perfil,
+// 		success: function (datos) {
+// 			$("#informacion").html(datos);
+// 		},
+// 	});
+// }
 
-function callNuevoPro(){
-		$.ajax({
-			url: 'INCLUDE/jsp/nuevoPuesto.html',
-			cache: false,
-			type: "GET",
-			success: function(datos){
-				$("#informacion").html(datos);
-			}
-		});
-	}
+// function callMenuIn() {
+// 	$.ajax({
+// 		url: "INCLUDE/menus/Minfraestructura.html",
+// 		cache: false,
+// 		type: "GET",
+// 		success: function (datos) {
+// 			$("#izquierda").html(datos);
+// 		},
+// 	});
+// }
 
-function checaNavegador(){ 
-	var navegador = navigator.appName;
-	if (navegador == "Microsoft Internet Explorer"){ 
-		return true; 
-	}else{ 
-        return false;
-	}
+// function callNuevoPro() {
+// 	$.ajax({
+// 		url: "INCLUDE/jsp/nuevoPuesto.html",
+// 		cache: false,
+// 		type: "GET",
+// 		success: function (datos) {
+// 			$("#informacion").html(datos);
+// 		},
+// 	});
+// }
 
-}
+// function checaNavegador() {
+// 	var navegador = navigator.appName;
+// 	if (navegador == "Microsoft Internet Explorer") {
+// 		return true;
+// 	} else {
+// 		return false;
+// 	}
+// }
 
-//inicio de sesion
-function IniciarSesion(){
-	    var usuario = $('#usuario').attr('value');
-		var clave = $('#clave').attr('value');  
-		var operacion = "checar"; 		
-		$.ajax({
-			url: 'UsuariosControlador',
-			cache: false,
-			type: "POST",
-			data: "operacion="+operacion+"&cuenta="+usuario+"&clave="+clave,
-			success: function(datos){
-				
-				if(datos==1){
-						if(checaNavegador()){
-							window.open("jsp/principal.jsp",null,"height=600,width=1000,status=yes,toolbar=no,menubar=no,location=no");
-						}else{
-							window.open("jsp/principal.jsp","Correo Tabasco","width=1000,height=600,resizable=1,scrollbars=0,location=0"); 	
-							}
-				}else{
-					alert("Usuario no existe");
-				}
-			}
-		});
-	}
+// //inicio de sesion
+// function IniciarSesion() {
+// 	var usuario = $("#usuario").attr("value");
+// 	var clave = $("#clave").attr("value");
+// 	var operacion = "checar";
+// 	$.ajax({
+// 		url: "UsuariosControlador",
+// 		cache: false,
+// 		type: "POST",
+// 		data: "operacion=" + operacion + "&cuenta=" + usuario + "&clave=" + clave,
+// 		success: function (datos) {
+// 			if (datos == 1) {
+// 				if (checaNavegador()) {
+// 					window.open(
+// 						"jsp/principal.jsp",
+// 						null,
+// 						"height=600,width=1000,status=yes,toolbar=no,menubar=no,location=no"
+// 					);
+// 				} else {
+// 					window.open(
+// 						"jsp/principal.jsp",
+// 						"Correo Tabasco",
+// 						"width=1000,height=600,resizable=1,scrollbars=0,location=0"
+// 					);
+// 				}
+// 			} else {
+// 				alert("Usuario no existe");
+// 			}
+// 		},
+// 	});
+// }
 
-
-function llamaInforme(archivo){
-    	window.open("../print/"+ archivo,"Informes","width=500,height=500,resizable=1,scrollbars=0,location=0"); 
- 
-}
-
-
+// function llamaInforme(archivo) {
+// 	window.open(
+// 		"../print/" + archivo,
+// 		"Informes",
+// 		"width=500,height=500,resizable=1,scrollbars=0,location=0"
+// 	);
+// }
 
 /*
 	function actualizarDatos(){
@@ -316,7 +382,7 @@ function llamaInforme(archivo){
 		var Alias = $('#Alias').attr('value');
 		var Nombre = $('#Nombre').attr('value'); 
 		var Apepat = $('#Apepat').attr('value'); 
-     	var Apemat = $('#Apemat').attr('value'); 
+		  var Apemat = $('#Apemat').attr('value'); 
 		var FKcategoria = $("#FKcategoria").attr("value");
 
 		$.ajax({
